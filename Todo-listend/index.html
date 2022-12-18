@@ -27,8 +27,38 @@
                         <i class="las la-calendar-check"></i>
                     </div>
                 </div>
+                <button class="btn" id="btn_add">Add Task</button>
+                <button class="btn" id="btn_save">Save Tast</button>
+            </div>
+            <div class="menu-bar">
+                <ul class="tabList">
+                    <li class="tabName active" id="tabShow">Show</li>
+                    <li class="tabName" id="tabSort">Sort</li>
+                    <li class="tabName" id="tabSearch">Search</li>
+                    <div class="line"></div>
+                </ul>
+                <ul class="tabContainer">
+                    <ul class="active tabPaneShow" data-pane="tabShow">
+                        <li id="all" class="active">All</li>
+                        <li id="pending">Pending</li>
+                        <li id="completed">Completed</li>
+                        <li id="expired">Expired</li>
+                    </ul>
+
+                    <ul class="tabPaneSort" data-pane="tabSort">
+                        <li id="time">Time</li>
+                        <li id="a-z">A -> Z</li>
+                        <li id="z-a">Z -> A</li>
+                    </ul>
+                    
+                    <ul class="tabPaneSearch" data-pane="tabSearch">
+                        <input type="text" id="search" placeholder="What task are you looking for?" autocomplete="off">
+                        <i class="las la-search"></i>
+                    </ul>
+                </ul>
             </div>
         </div>
+        <div id="Listing"></div>
     </div>
 </body>
 </html>
