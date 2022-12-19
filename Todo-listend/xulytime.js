@@ -12,49 +12,49 @@ const inputSearch = document.getElementById("search")
 
 
 //1. Hàm thêm số 0 vào đằng trước các só từ 1 -> 9
-function addZero(number){
-    if(number > 0 && number < 10 ){
-        return '0' + number
+    function addZero(number){
+        if(number > 0 && number < 10 ){
+            return '0' + number
+        }
+        return '' + number
     }
-    return '' + number
-}
 //2. Hàm chuyển đổi ngày giờ
-function convertDate(date = ""){
-    if(!date){
-        return `${new Date().toDateString().slice(0, 4)}${addZero(new Date().getDate())}/${addZero(new Date().getMonth() + 1)}/${new Date().getFullYear()} - 23:59`
-    }else{
-        return `${new Date(date).toDateString().slice(0, 4)}${addZero(new Date(date).getDate(date))}/${addZero(new Date(date).getMonth() + 1)}/${new Date(date).getFullYear()} - ${new Date(date).toTimeString().slice(0, 5)}`
+    function convertDate(date = ""){
+        if(!date){
+            return `${new Date().toDateString().slice(0, 4)}${addZero(new Date().getDate())}/${addZero(new Date().getMonth() + 1)}/${new Date().getFullYear()} - 23:59`
+        }else{
+            return `${new Date(date).toDateString().slice(0, 4)}${addZero(new Date(date).getDate(date))}/${addZero(new Date(date).getMonth() + 1)}/${new Date(date).getFullYear()} - ${new Date(date).toTimeString().slice(0, 5)}`
+        }
     }
-}
 //3. template task
-function template(id ,status, dateTime, name) {
-    return `
-    <li class="task ${status}" data-id="${id}">
-    
-    <i onclick="nameClick(this)" class="iconCheck las la-check-square"></i>
-    
-    <div class="task-content">
-    
-    <p class="task__dateTime">
-    <span class="date">${convertDate(new Date(dateTime)).slice(0, 14)}</span>
-    <span class="time">${convertDate(new Date(dateTime)).slice(17)}</span>
-    </p>
-    
-    <p onclick="nameClick(this)" class="name">${name}</p>
-    
-    </div>
-    
-    <i onclick="dotClick(this)" class="dot las la-ellipsis-h">
-    
-    <ul class="setting">
-    <li onclick="deleteClick(this)" class="delete"><i class="las la-trash"></i>Delete</li>
-    <li onclick="editClick(this)" class="edit"><i class="las la-pen"></i>Edit</li>
-    </ul>
-    
-    </i>
-    
-    </li>`
-}
+    function template(id ,status, dateTime, name) {
+        return `
+        <li class="task ${status}" data-id="${id}">
+        
+        <i onclick="nameClick(this)" class="iconCheck las la-check-square"></i>
+        
+        <div class="task-content">
+        
+        <p class="task__dateTime">
+        <span class="date">${convertDate(new Date(dateTime)).slice(0, 14)}</span>
+        <span class="time">${convertDate(new Date(dateTime)).slice(17)}</span>
+        </p>
+        
+        <p onclick="nameClick(this)" class="name">${name}</p>
+        
+        </div>
+        
+        <i onclick="dotClick(this)" class="dot las la-ellipsis-h">
+        
+        <ul class="setting">
+        <li onclick="deleteClick(this)" class="delete"><i class="las la-trash"></i>Delete</li>
+        <li onclick="editClick(this)" class="edit"><i class="las la-pen"></i>Edit</li>
+        </ul>
+        
+        </i>
+        
+        </li>`
+    }
 //Rennder template 
     function renderTemplate(data, element, insertPosition) {
         data.forEach(item => {
@@ -62,79 +62,80 @@ function template(id ,status, dateTime, name) {
         });
     }
 //5. animation
-function animation(countShow ,display, notDisplayed){
-    if(countShow > 0){
-        document.querySelector('.notThing')?.remove()
-    }
-
-    let countDisplay = 0
-    let countNotDisplayed = 0
-    
-    setTimeout(()=>{
-        notDisplayed[countNotDisplayed++]?.classList.remove('show')
-    }, 0)
-
-    const notDisplayedInterval = setInterval(() => {
-        if(countNotDisplayed >= notDisplayed.length) {
-            clearInterval(notDisplayedInterval)
-        } else {
-            notDisplayed[countNotDisplayed++].classList.remove('show')
+    function animation(countShow ,display, notDisplayed){
+        if(countShow > 0){
+            document.querySelector('.notThing')?.remove()
         }
-    }, 250);
-    
-    setTimeout(() => {
 
+        let countDisplay = 0
+        let countNotDisplayed = 0
+        
         setTimeout(()=>{
-            display[countDisplay++]?.classList.add('show')
+            notDisplayed[countNotDisplayed++]?.classList.remove('show')
         }, 0)
 
-        const displayInterval = setInterval(() => {
-            if(countDisplay >= display.length) {
-                clearInterval(displayInterval)
-
-                document.querySelectorAll('.tabPaneShow li').forEach(item => {
-                    item.style.pointerEvents = 'all'
-                })
-
-                if(countShow === 0 && document.querySelector('.notThing') === null){
-                    list.insertAdjacentHTML('afterbegin', `<p class="notThing">You don't have any task here</p>`)
-                }
+        const notDisplayedInterval = setInterval(() => {
+            if(countNotDisplayed >= notDisplayed.length) {
+                clearInterval(notDisplayedInterval)
             } else {
-                display[countDisplay++].classList.add('show')
+                notDisplayed[countNotDisplayed++].classList.remove('show')
             }
         }, 250);
         
-    }, notDisplayed.length * 250);
-}
-//6. animation hiển thị tất cả task 
-function showAllTask(){
-    const arrShow = []
-    
-    list.querySelectorAll('.task').forEach(element => {
-        if(!element.classList.contains('show')){
-            arrShow.push(element)
-        }
-    })
+        setTimeout(() => {
 
-    if(list.querySelectorAll('.task').length === 0 && document.querySelector('.notThing') === null){
-        list.insertAdjacentHTML('afterbegin', `<p class="notThing">You don't have any task here</p>`)
-    }else if(list.querySelectorAll('.task').length > 0){
-        document.querySelector('.notThing')?.remove()
+            setTimeout(()=>{
+                display[countDisplay++]?.classList.add('show')
+            }, 0)
+
+            const displayInterval = setInterval(() => {
+                if(countDisplay >= display.length) {
+                    clearInterval(displayInterval)
+
+                    document.querySelectorAll('.tabPaneShow li').forEach(item => {
+                        item.style.pointerEvents = 'all'
+                    })
+
+                    if(countShow === 0 && document.querySelector('.notThing') === null){
+                        list.insertAdjacentHTML('afterbegin', `<p class="notThing">You don't have any task here</p>`)
+                    }
+                } else {
+                    display[countDisplay++].classList.add('show')
+                }
+            }, 250);
+            
+        }, notDisplayed.length * 250);
     }
-    
-    let count = 0
-    setTimeout(()=>{
-        arrShow[count++]?.classList.add('show')
-    }, 0)
-    const loopInterval = setInterval(() => {
-        if(count >= arrShow.length) {
-            clearInterval(loopInterval)
-            document.querySelectorAll('.tabPaneShow li').forEach(item => {
-                item.style.pointerEvents = 'all'
-            })
-        } else {
-            arrShow[count++].classList.add('show')
+//6. animation hiển thị tất cả task 
+    function showAllTask(){
+        const arrShow = []
+        
+        list.querySelectorAll('.task').forEach(element => {
+            if(!element.classList.contains('show')){
+                arrShow.push(element)
+            }
+        })
+
+        if(list.querySelectorAll('.task').length === 0 && document.querySelector('.notThing') === null){
+            list.insertAdjacentHTML('afterbegin', `<p class="notThing">You don't have any task here</p>`)
+        }else if(list.querySelectorAll('.task').length > 0){
+            document.querySelector('.notThing')?.remove()
         }
-    }, 250);
-    
-}    
+        
+        let count = 0
+        setTimeout(()=>{
+            arrShow[count++]?.classList.add('show')
+        }, 0)
+        const loopInterval = setInterval(() => {
+            if(count >= arrShow.length) {
+                clearInterval(loopInterval)
+                document.querySelectorAll('.tabPaneShow li').forEach(item => {
+                    item.style.pointerEvents = 'all'
+                })
+            } else {
+                arrShow[count++].classList.add('show')
+            }
+        }, 250);
+        
+        
+    }    
