@@ -2,11 +2,11 @@ const inputTask = document.getElementById('input-task')
 const label = document.querySelector('#input-task + label')
 const buttons = document.querySelectorAll('.btn')
 const tabName = document.querySelectorAll('.tabName')
-const list = document.getElementById('list')
+const list = document.getElementById('Listing')
 const inputDueDate = document.getElementById('deadline')
 const pNowDate =  document.querySelector('.nowDate')
-const buttonAdd = document.getElementById('btn-add')
-const buttonSave = document.getElementById('btn-save')
+const buttonAdd = document.getElementById('btn_add')
+const buttonSave = document.getElementById('btn_save')
 const inputSearch = document.getElementById("search")
 
 
@@ -55,7 +55,7 @@ const inputSearch = document.getElementById("search")
         
         </li>`
     }
-//Rennder template 
+//4.Rennder template 
     function renderTemplate(data, element, insertPosition) {
         data.forEach(item => {
             element.insertAdjacentHTML(insertPosition, template(item.id, item.status, item.dateTime, item.name))
