@@ -280,11 +280,11 @@ body {
 }
 
 .task.completed .iconCheck {
-    color: rgb(0, 213, 0);
+    color: rgb(224, 10, 10);
 }
 
 .task.completed .task-content .name {
-    color: rgb(0, 213, 0);
+    color: rgb(224, 10, 10);
     text-decoration: line-through;
 }
 

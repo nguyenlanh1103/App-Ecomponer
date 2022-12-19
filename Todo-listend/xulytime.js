@@ -31,27 +31,27 @@ const inputSearch = document.getElementById("search")
         return `
         <li class="task ${status}" data-id="${id}">
         
-        <i onclick="nameClick(this)" class="iconCheck las la-check-square"></i>
-        
-        <div class="task-content">
-        
-        <p class="task__dateTime">
-        <span class="date">${convertDate(new Date(dateTime)).slice(0, 14)}</span>
-        <span class="time">${convertDate(new Date(dateTime)).slice(17)}</span>
-        </p>
-        
-        <p onclick="nameClick(this)" class="name">${name}</p>
-        
-        </div>
-        
-        <i onclick="dotClick(this)" class="dot las la-ellipsis-h">
-        
-        <ul class="setting">
-        <li onclick="deleteClick(this)" class="delete"><i class="las la-trash"></i>Delete</li>
-        <li onclick="editClick(this)" class="edit"><i class="las la-pen"></i>Edit</li>
-        </ul>
-        
-        </i>
+            <i onclick="nameClick(this)" class="iconCheck las la-check-square"></i>
+            
+            <div class="task-content">
+            
+                <p class="task__dateTime">
+                <span class="date">${convertDate(new Date(dateTime)).slice(0, 14)}</span>
+                <span class="time">${convertDate(new Date(dateTime)).slice(17)}</span>
+                </p>
+                
+                <p onclick="nameClick(this)" class="name">${name}</p>
+            
+            </div>
+            
+            <i onclick="dotClick(this)" class="dot las la-ellipsis-h">
+            
+                <ul class="setting">
+                <li onclick="deleteClick(this)" class="delete"><i class="las la-trash"></i>Delete</li>
+                <li onclick="editClick(this)" class="edit"><i class="las la-pen"></i>Edit</li>
+                </ul>
+            
+            </i>
         
         </li>`
     }

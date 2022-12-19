@@ -27,42 +27,47 @@
 //3. xử lý check, thay đổi class và lưu vào localStorage
     function nameClick(_this){
 
-        let task =_this.parentElement
+            
+        let task = _this.parentElement
         while(!task.matches('.task')){
             task = task.parentElement
         }
 
-        const tabShowActive = document.querySelector('.tabPaneShow.active li.active')?.id
+        const tabShowActive =  document.querySelector('.tabPaneShow.active li.active')?.id
 
+        
+        
         if(task.classList.contains('pending')){
-            task.classList.replace('pending', 'comleted')
+            task.classList.replace('pending', 'completed')
         }else{
-            task.classList.replace('comleted', 'pending')
+            task.classList.replace('completed', 'pending')
         }
 
+        
         let countTask = 0
-        if(tabShowActive === 'pending' || tabShowActive === 'comleted'){
-
+        if(tabShowActive === 'pending' || tabShowActive === 'completed'){
+            
             if(!task.classList.contains(tabShowActive)){
                 task.classList.remove('show')
 
-                list.querySelector('.task').forEach(task => {
+                list.querySelectorAll('.task').forEach(task => {
                     if(task.classList.contains(tabShowActive)) countTask++
-                });
+                })
             }
 
-            if(countTask === 0 && document.querySelector('a') === null ){
+            if(countTask === 0 && document.querySelector('a') === null){
                 setTimeout(()=>{
                     list.insertAdjacentHTML('afterbegin', `<p class="notThing">You don't have any task here</p>`)
-                }, 250)
+                },250)
             }
         }
+
 
         data.find((item) => {
             return item.id === +task.dataset.id
         }).status = task.classList[1]
 
-        localStorage.setItem('data', JSON.stringify(data))
+        localStorage.setItem('data' ,JSON.stringify(data))
 
     }
 
@@ -199,7 +204,7 @@
                 
             }          
         }
-    }, 1000)
+    }, 1500)
 //8. xử lý tab all, pending, completed, expired
     document.getElementById('all').addEventListener('click', ()=>{menuShow('all')})
     document.getElementById('pending').addEventListener('click', ()=>{menuShow('pending')})
