@@ -74,6 +74,7 @@ body {
 .add__task input:focus {
     border: 2px solid rgb(60, 135, 255);
 }
+
 #deadline {
     border: none;
     outline: none;
@@ -426,4 +427,65 @@ ul.tabPaneSort {
 }
 .deadline {
     position: relative;
+}
+
+/* width */
+#list::-webkit-scrollbar {
+    width: 2px;
+    
+}
+
+/* Track */
+#list::-webkit-scrollbar-track {
+    background: transparent;
+    
+}
+
+/* Handle */
+#list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+#list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.task{
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+    
+    padding: 0px;
+    border-bottom: 0px solid rgb(204, 204, 204);
+    margin-bottom: 0px;
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    transition: all .25s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.task.show{
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    padding: 6px 0px 8px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    z-index: 1;
+}
+#list {
+    list-style: none;
+    padding: 28px 25px 0;
+    overflow-y: auto;
 }
